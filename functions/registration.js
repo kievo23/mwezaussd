@@ -73,7 +73,7 @@ let registration = async(text,req, res, agent) => {
                 customer = await Customer.create({
                     customer_account_msisdn: phone,
                     person_id: person.id,
-                    pin_reset: 1,
+                    pin_reset: 0,
                     pin: hash,
                     salt_key: salt,
                     agent_id: parseInt(agent.id)
@@ -99,7 +99,7 @@ let registration = async(text,req, res, agent) => {
                 let customer = await Customer.create({
                     customer_account_msisdn: phone,
                     person_id: person.id,
-                    pin_reset: 1,
+                    pin_reset: 0,
                     pin: hash,
                     salt_key: salt,
                     agent_id: parseInt(agent.id)
