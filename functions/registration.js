@@ -42,12 +42,12 @@ let registration = async(text,req, res, agent) => {
         1. Complete registration`
         res.send(response)
     }else if(size == 8){
-        let surname = array[0].trim();
-        let firstname = array[1].trim();
-        let othernames = array[2].trim();
-        let id = array[3].trim();
-        let business_name = array[4].trim();
-        let location = array[5].trim();
+        let surname = array[1].trim();
+        let firstname = array[2].trim();
+        let othernames = array[3].trim();
+        let id = array[4].trim();
+        let business_name = array[5].trim();
+        let location = array[6].trim();
         let phone = "+254"+last(req.body.phoneNumber.trim(), 9);
         
         let person = await Person.findOne({ where: {id_number: id} })

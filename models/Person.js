@@ -15,6 +15,10 @@ const Person = sequelize.define('people',{
         type: Sequelize.STRING,
         allowNull: false,
     },
+    physical_location : {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
     other_names: {
         type: Sequelize.STRING,
         allowNull: true,
