@@ -47,8 +47,8 @@ let CustomerModule =  async ( customer, text, req, res) => {
     let lastString = _.last(array)
     let firstString = _.first(array)
     console.log(textnew)
-    console.log(array)
-    if(firstString == 1 || size == 1){
+    console.log(size)
+    if(firstString == 1 && size == 1){
         //console.log("Main Menu");
         //var m = moment(dates)
         console.log(dates)

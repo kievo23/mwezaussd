@@ -163,19 +163,22 @@ customerUssd : function customerUssd(customer,text,req,res){
     (Forgot password? Call ${config.app.contact})`
     //console.log(req.session);
     res.send(response)
-  } else if (firstString.length == 4) {
-    // Business logic for first level response
-    // BUSINESS LOGIC FOR
-    //console.log(array[0])
-    let rst = bcrypt.compareSync(array[0], customer.pin);
-    if(rst == true){
-      return customerModule(customer,newtext,req,res)
-    }else{
-      let response = `CON Wrong password.
-      #. go back to previous menu`
-      res.send(response)
-    }   
-  } else {
+    
+  } 
+    //else if (firstString.length == 4) {
+  //   // Business logic for first level response
+  //   // BUSINESS LOGIC FOR
+  //   //console.log(array[0])
+  //   let rst = bcrypt.compareSync(array[0], customer.pin);
+  //   if(rst == true){
+  //     return customerModule(customer,newtext,req,res)
+  //   }else{
+  //     let response = `CON Wrong password.
+  //     #. go back to previous menu`
+  //     res.send(response)
+  //   }   
+  // } 
+  else {
     let response = `CON Invalid Input
     #. Main Menu
     CANCEL. End USSD`
