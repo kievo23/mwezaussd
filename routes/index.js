@@ -40,7 +40,7 @@ router.post('*', async (req, res) => {
     if(text == ''){
       res.send(`CON Welcome to Endeleza Capital
       Press 1 to register
-      `);
+      `)
     }else{
       return registration.registration(text,req, res, agent)
     }
@@ -154,29 +154,32 @@ customerUssd : function customerUssd(customer,text,req,res){
     let response = `END Dear ${customer.person.first_name}, your account is blocked. 
   Kindly contact ${config.app.name} for more details on ${config.app.contact}.`
     res.send(response)
-  }else if (newtext == '' || lastString== '#' || array.length == 0) {
-    // This is the first request. Note how we start the response with CON
+  }else if(newtext == '' || lastString== '#'){
     return customerModule(customer,newtext,req,res)
+  }
+  
+  // if (newtext == '' || lastString== '#' || array.length == 0) {
+  //   // This is the first request. Note how we start the response with CON
+  //   let response = `CON Welcome ${customer.person.first_name} to Twiga ${config.app.name} Payment Platform
     
-    let response = `CON Welcome ${customer.person.first_name} to ${config.app.name} Payment Platform
-    
-    Input your password to proceed
-    (Forgot password? Call ${config.app.contact})`
-    //console.log(req.session);
-    res.send(response)
-  } else if (firstString.length == 4) {
-    // Business logic for first level response
-    // BUSINESS LOGIC FOR
-    //console.log(array[0])
-    let rst = bcrypt.compareSync(array[0], customer.pin);
-    if(rst == true){
-      return customerModule(customer,newtext,req,res)
-    }else{
-      let response = `CON Wrong password.
-      #. go back to previous menu`
-      res.send(response)
-    }   
-  } else {
+  //   Input your password to proceed
+  //   (Forgot password? Call ${config.app.contact})`
+  //   //console.log(req.session);
+  //   res.send(response)
+  // } else if (firstString.length == 4) {
+  //   // Business logic for first level response
+  //   // BUSINESS LOGIC FOR
+  //   //console.log(array[0])
+  //   let rst = bcrypt.compareSync(array[0], customer.pin);
+  //   if(rst == true){
+  //     return customerModule(customer,newtext,req,res)
+  //   }else{
+  //     let response = `CON Wrong password.
+  //     #. go back to previous menu`
+  //     res.send(response)
+  //   }   
+  // } 
+  else {
     let response = `CON Invalid Input
     #. Main Menu
     CANCEL. End USSD`
