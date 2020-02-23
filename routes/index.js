@@ -156,6 +156,7 @@ customerUssd : function customerUssd(customer,text,req,res){
     res.send(response)
   }else if (newtext == '' || lastString== '#' || array.length == 0) {
     // This is the first request. Note how we start the response with CON
+    return customerModule(customer,newtext,req,res)
     let response = `CON Welcome ${customer.person.first_name} to Twiga ${config.app.name} Payment Platform
     
     Input your password to proceed
