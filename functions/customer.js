@@ -48,22 +48,20 @@ let CustomerModule =  async ( customer, text, req, res) => {
     let firstString = _.first(array)
     console.log(textnew)
     console.log(size)
-    if(firstString == 1 && size == 1){
+    if(textnew == ""){
         //console.log("Main Menu");
         //var m = moment(dates)
         console.log(dates)
         let response = ""
-        console.log("Delivery")
             response = `CON Your pending ${config.app.name} balance is ${balance} KES 
 1. Request ${config.app.name} facilitation
 2. Pay in Full
 3. Pay Partially
 4. Check Limit
-5. Change PIN`
-        
+5. Change PIN`        
         
         res.send(response)
-    }else if(size == 2){
+    }else if(size == 1){
         if(lastString == 2){
             //Make Payment
             const testMSISDN = customer.customer_account_msisdn.substring(customer.customer_account_msisdn.length - 12)
@@ -99,7 +97,7 @@ let CustomerModule =  async ( customer, text, req, res) => {
 #. To go back to the main menu`
             res.send(response);
         }
-    }else if(size == 3){
+    }else if(size == 2){
         //Make Payment
         if(array[1] == 4 ){
             const testMSISDN = customer.customer_account_msisdn.substring(customer.customer_account_msisdn.length - 12)
@@ -113,18 +111,6 @@ let CustomerModule =  async ( customer, text, req, res) => {
             //console.log(rcd)
             let response = `END Wait for the MPesa prompt`
             res.send(response);
-        }else if(array[1] == 1 ){
-            //Make the delivery a loan entry
-            let index = parseInt(lastString)- 1;
-            if(Math.ceil(parseFloat(customer.account_limit)) > Math.ceil(parseFloat(balance) + parseFloat(array[2]))){
-                let response = `CON Input the tillNumber to receive funds`
-                //sendSMS(customer.customer_account_msisdn,msg);
-                res.send(response);
-            }else{
-                let response = `END Sorry, Your request has exceeded your facilitation limit. Your limit is currently at KES ${customer.account_limit}`
-                res.send(response);
-            }
-            
         }else if(array[1] == 6 ){
             let code = Math.floor(1000 + Math.random() * 9000);
             let salt = bcrypt.genSaltSync(10);
@@ -145,17 +131,29 @@ let CustomerModule =  async ( customer, text, req, res) => {
                 let response =`END Password successfully reset`
                 res.send(response)
             }
+        }else {
+            //Make the delivery a loan entry
+            let index = parseInt(lastString) - 1;
+            if(Math.ceil(parseFloat(customer.account_limit)) > Math.ceil(parseFloat(balance) + parseFloat(array[1]))){
+                let response = `CON Input the tillNumber to receive funds`
+                //sendSMS(customer.customer_account_msisdn,msg);
+                res.send(response);
+            }else{
+                let response = `END Sorry, Your request has exceeded your facilitation limit. Your limit is currently at KES ${customer.account_limit}`
+                res.send(response);
+            }
+            
         }
-    }else if(size == 4){
-        if(array[1] == 1 ){
+    }else if(size == 3){
+        //if(array[1] == 1 ){
             let response =`CON Confirm that you need a loan amount ${array[2]} paid to till number ${array[3]}
     Press 1 to confirm this`
             res.send(response)
-        }
-    }else if(size == 5){
-        if(array[1] == 1 && array[4] == 1 ){
-            let amount = array[2];
-            let till = array[3];
+        //}
+    }else if(size == 4){
+        if(array[0] == 1 && array[3] == 1 ){
+            let amount = array[1];
+            let till = array[2];
             let rst = await Delivery.create({
                 amount: amount,
                 customer_id: customer.id,
