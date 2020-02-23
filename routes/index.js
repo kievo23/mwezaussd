@@ -37,7 +37,13 @@ router.post('*', async (req, res) => {
 // Kindly contact ${config.app.name} on 
 // ${config.app.contact}`
     //res.send(response);
-    return registration.registration(text,req, res, agent)
+    if(text == ''){
+      res.send(`CON Welcome to Endeleza Capital
+      Press 1 to register
+      `);
+    }else{
+      return registration.registration(text,req, res, agent)
+    }
   }
   else if(customer){
     return customerUssd(customer,text,req,res);
