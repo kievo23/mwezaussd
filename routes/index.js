@@ -154,7 +154,7 @@ customerUssd : function customerUssd(customer,text,req,res){
     let response = `END Dear ${customer.person.first_name}, your account is blocked. 
   Kindly contact ${config.app.name} for more details on ${config.app.contact}.`
     res.send(response)
-  }else if (newtext == '' || lastString== '#' || array.length == 0) {
+  }else if (newtext == '' || lastString== '#' || array.length >= 0) {
     // This is the first request. Note how we start the response with CON
     return customerModule(customer,newtext,req,res)
     let response = `CON Welcome ${customer.person.first_name} to ${config.app.name} Payment Platform
