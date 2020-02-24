@@ -146,7 +146,7 @@ let CustomerModule =  async ( customer, text, req, res) => {
         }
     }else if(size == 3){
         //if(array[1] == 1 ){
-            let response =`CON Confirm that you need a loan amount ${array[2]} paid to till number ${array[3]}
+            let response =`CON Confirm that you need a loan amount ${array[1]} paid to till number ${array[2]}
     Press 1 to confirm this`
             res.send(response)
         //}
@@ -160,7 +160,7 @@ let CustomerModule =  async ( customer, text, req, res) => {
                 till_number: till,
                 phone: req.body.phoneNumber
             })
-            let response =`END We have received your loan request of ${array[2]} paid to till number ${array[3]}
+            let response =`END We have received your loan request of ${array[1]} paid to till number ${array[2]}
     Keep enjoying Endeleza services`
             res.send(response)
         }
