@@ -38,16 +38,28 @@ let registration = async(text,req, res, agent) => {
         let response = `CON Enter the location of the business`
         res.send(response)
     }else if(size == 7){
+        let response = `CON Enter the alternative phone number`
+        res.send(response)
+    }else if(size == 8){
+        let response = `CON Enter the name of your County`
+        res.send(response)
+    }else if(size == 9){
+        let response = `CON Enter the name of your sub-county`
+        res.send(response)
+    }else if(size == 10){
         let response = `CON Confirm customer's registration?. 
         1. Complete registration`
         res.send(response)
-    }else if(size == 8){
+    }else if(size == 11){
         let surname = array[1].trim();
         let firstname = array[2].trim();
         let othernames = array[3].trim();
         let id = array[4].trim();
         let business_name = array[5].trim();
         let location = array[6].trim();
+        let alternative_phone = array[7].trim();
+        let county = array[8].trim();
+        let subcounty = array[9].trim();
         let phone = "+254"+last(req.body.phoneNumber.trim(), 9);
         
         let person = await Person.findOne({ where: {id_number: id} })
@@ -63,6 +75,9 @@ let registration = async(text,req, res, agent) => {
                 primary_msisdn: phone,
                 physical_location: location,
                 business_name: business_name,
+                alternate_msisdn: alternative_phone,
+                county: county,
+                subcounty: subcounty
             })
             //console.log(person);
             let code = Math.floor(1000 + Math.random() * 9000);

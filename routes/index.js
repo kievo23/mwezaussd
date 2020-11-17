@@ -17,7 +17,7 @@ const resetPassword = require('../functions/resetPassword');
 const customerModule = require('../functions/customer');
 
 router.get('/', (req, res) => {
-  res.send('Endeleza USSD Application');
+  res.send('M-Weza USSD Application');
 });
 
 router.post('*', async (req, res) => {
@@ -29,7 +29,7 @@ router.post('*', async (req, res) => {
   
   let customer = await Customer.findOne({ include: [Person], where: { customer_account_msisdn : phone } });
   //console.log(customer.person.FIRST_NAME);
-  let agent = await Agent.findOne({ include: [Person], where: { agent_msisdn : "+254710345132" } });
+  let agent = await Agent.findOne({ include: [Person], where: { agent_msisdn : "+254722942075" } });
   //console.log(agent);
   //if(!customer && !agent){
   if(!customer){
@@ -38,7 +38,7 @@ router.post('*', async (req, res) => {
 // ${config.app.contact}`
     //res.send(response);
     if(text == ''){
-      res.send(`CON Welcome to Endeleza Capital
+      res.send(`CON Welcome to ${config.app.name}
       Press 1 to register and get loans
       `)
     }else{

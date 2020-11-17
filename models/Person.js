@@ -71,6 +71,14 @@ const Person = sequelize.define('people',{
         type: Sequelize.STRING,
         allowNull: true,
     },
+    county: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
+    subcounty: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
     active: {
         type: Sequelize.BOOLEAN,
         allowNull: true,
