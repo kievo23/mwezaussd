@@ -9,7 +9,7 @@ const Agent = require('../models/Sales_Agent');
 const Customer = require('../models/Customer');
 const Customer_Type = require('../models/Customer_Account_Type');
 const sendSMS = require('../functions/sendSMS');
-const config = require(__dirname + '/../config.json');
+const config = require('../config.json');
 
 //functions
 const registration = require('../functions/registration');
