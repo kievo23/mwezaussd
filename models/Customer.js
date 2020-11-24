@@ -84,6 +84,10 @@ const Customer = sequelize.define('customers',{
         type: Sequelize.INTEGER,
         allowNull: true,
     },
+    company_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
     updated_by: {
         type: Sequelize.INTEGER,
         allowNull: true,

@@ -117,6 +117,7 @@ let registration = async(text,req, res, agent) => {
                     pin_reset: 0,
                     pin: hash,
                     salt_key: salt,
+                    company_id: 2,
                     agent_id: parseInt(agent.id)
                 })
                 sendSMS(phone,"Welcome "+person.first_name+", your One Time Password is: "+code+". Kindly dial "+config.app.ussdcode+" to complete the registration process");
