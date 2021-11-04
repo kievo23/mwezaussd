@@ -15,6 +15,7 @@ const config = require('../config.json');
 const registration = require('../functions/registration');
 const resetPassword = require('../functions/resetPassword');
 const customerModule = require('../functions/customer');
+const newCustomerModule = require('../functions/newcustomer');
 
 router.get('/', (req, res) => {
   res.send('M-Weza USSD Application');
@@ -156,7 +157,7 @@ customerUssd : function customerUssd(customer,text,req,res){
     res.send(response)
   }else if (newtext == '' || lastString== '#' || array.length >= 0) {
     // This is the first request. Note how we start the response with CON
-    return customerModule(customer,newtext,req,res)
+    return newCustomerModule(customer,newtext,req,res)
     let response = `CON Welcome ${customer.person.first_name} to ${config.app.name} Payment Platform
     
     Input your password to proceed
